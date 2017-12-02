@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createShortcut(appInfoModel: AppInfoModel) {
-        val shortcutIntent = packageManager.getLaunchIntentForPackage(appInfoModel.packageName);
+        val shortcutIntent = InterceptActivity.createIntent(this, appInfoModel.packageName);
         shortcutIntent.action = Intent.ACTION_MAIN
         shortcutIntent.addCategory(Intent.CATEGORY_LAUNCHER)
 
@@ -40,5 +40,7 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
         intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, appInfoModel.name);
         sendBroadcast(intent);
+
+        finish()
     }
 }
