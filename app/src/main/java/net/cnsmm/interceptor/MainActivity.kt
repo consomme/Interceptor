@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         val pm: PackageManager = packageManager
         val list = pm.getInstalledApplications(PackageManager.GET_META_DATA)
+                .filter { appInfo -> pm.getLaunchIntentForPackage(appInfo.packageName) != null }
                 .map { appInfo -> AppInfoModel(appInfo.loadIcon(pm), appInfo.loadLabel(pm).toString(), appInfo.packageName) }
                 .sortedWith(Comparator { o1, o2 -> o1.name.compareTo(o2.name) })
                 .toMutableList()
