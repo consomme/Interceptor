@@ -22,7 +22,7 @@ class InterceptActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // Disable USB Debugging
-        Settings.Global.putString(contentResolver, Settings.Global.ADB_ENABLED, "0")
+        Settings.Global.putInt(contentResolver, Settings.Global.ADB_ENABLED, 0)
 
         val targetPackage = intent.getStringExtra(INTENT_PARAM_PACKAGE_NAME)
         startActivity(packageManager.getLaunchIntentForPackage(targetPackage))
