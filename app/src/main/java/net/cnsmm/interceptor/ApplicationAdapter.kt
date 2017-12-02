@@ -6,7 +6,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import net.cnsmm.interceptor.databinding.ListItemApplicationBinding
 
-class ApplicationAdapter(val appInfoList: MutableList<AppInfoModel>) : RecyclerView.Adapter<ApplicationAdapter.ViewHolder>() {
+class ApplicationAdapter(private val appInfoList: MutableList<AppInfoModel>,
+                         private val onItemClickListener: (AppInfoModel) -> Unit) : RecyclerView.Adapter<ApplicationAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
         return appInfoList.size
@@ -17,6 +18,8 @@ class ApplicationAdapter(val appInfoList: MutableList<AppInfoModel>) : RecyclerV
 
         holder.binding.appIconImageView.setImageDrawable(info.icon)
         holder.binding.appNameTextView.text = info.name
+
+        holder.itemView.setOnClickListener({ onItemClickListener(info) })
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

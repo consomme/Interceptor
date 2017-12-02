@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.Toast
 import net.cnsmm.interceptor.databinding.ActivityMainBinding
 
 
@@ -24,7 +25,9 @@ class MainActivity : AppCompatActivity() {
                 .map { info -> AppInfoModel(info.loadIcon(pm), info.loadLabel(pm)) }
                 .toMutableList()
 
-        val adapter = ApplicationAdapter(list)
+        val adapter = ApplicationAdapter(list) { appInfoModel ->
+            Toast.makeText(this, appInfoModel.name, Toast.LENGTH_SHORT).show()
+        }
         binding.recyclerView.adapter = adapter
     }
 }
