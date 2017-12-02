@@ -2,4 +2,4 @@ package net.cnsmm.interceptor
 
 import android.graphics.drawable.Drawable
 
-data class AppInfoModel(val icon: Drawable, val name: CharSequence, val packageName: String)
+data class AppInfoModel(val icon: Drawable, val name: String, val packageName: String)
