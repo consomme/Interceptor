@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.Toast
 import net.cnsmm.interceptor.databinding.ActivityMainBinding
 
 
@@ -44,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, appInfoModel.name);
         intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, iconBitmapDrawable.bitmap);
         sendBroadcast(intent);
+
+        Toast.makeText(this,
+                getString(R.string.create_shortcut_succeeded, appInfoModel.name),
+                Toast.LENGTH_SHORT).show()
 
         finish()
     }
