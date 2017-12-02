@@ -9,10 +9,11 @@ import android.support.v7.app.AppCompatActivity
 class InterceptActivity : AppCompatActivity() {
 
     companion object {
+        private const val INTENT_PARAM_PACKAGE_NAME = "package_name"
 
         fun createIntent(context: Context, targetPackage: String): Intent {
             val intent = Intent(context, InterceptActivity::class.java)
-            intent.putExtra("package_name", targetPackage)
+            intent.putExtra(INTENT_PARAM_PACKAGE_NAME, targetPackage)
             return intent
         }
     }
@@ -23,7 +24,7 @@ class InterceptActivity : AppCompatActivity() {
         // Disable USB Debugging
         Settings.Global.putString(contentResolver, Settings.Global.ADB_ENABLED, "0")
 
-        val targetPackage = intent.getStringExtra("package_name")
+        val targetPackage = intent.getStringExtra(INTENT_PARAM_PACKAGE_NAME)
         startActivity(packageManager.getLaunchIntentForPackage(targetPackage))
 
         finish()

@@ -3,6 +3,7 @@ package net.cnsmm.interceptor
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.databinding.DataBindingUtil
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
@@ -36,9 +37,12 @@ class MainActivity : AppCompatActivity() {
         shortcutIntent.action = Intent.ACTION_MAIN
         shortcutIntent.addCategory(Intent.CATEGORY_LAUNCHER)
 
+        val iconBitmapDrawable = appInfoModel.icon as BitmapDrawable
+
         val intent = Intent("com.android.launcher.action.INSTALL_SHORTCUT")
         intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
         intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, appInfoModel.name);
+        intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, iconBitmapDrawable.bitmap);
         sendBroadcast(intent);
 
         finish()
